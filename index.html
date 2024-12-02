@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Loading hallacas...</title>
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      margin: 1;
+      padding: 1;
+      background: linear-gradient(135deg, #ffafbd, #ffc3a0);
+      color: #d62a18;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      text-align: center;
+      position: relative;
+    }
+    h1 {
+      font-size: 4rem;
+      margin: 0.5rem 0;
+    }
+    h2 {
+      font-size: 1.5rem;
+      margin: 0.5rem 0 2rem;
+    }
+    #countdown {
+      font-size: 3rem;
+      font-weight: bold;
+      background: #fff;
+      color: #28640a;
+      padding: 0.5rem 1rem;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    }
+    .gif-container {
+      position: absolute;
+      top: 5%;
+      left: 5%;
+      z-index: 2;
+      width: 150px;
+      height: auto;
+    }
+
+    .gif-container img {
+      width: 170px;
+      height: auto;
+      border-radius: 50%;
+      animation: move-gif 3s infinite alternate;
+    }
+
+    .gif-container-right {
+      position: absolute;
+      top: 5%;
+      right: 5%;
+      z-index: 2;
+      width: 150px;
+      height: auto;
+    }
+
+    .gif-container-right img {
+      width: 170px;
+      height: auto;
+      border-radius: 50%;
+      animation: move-gif 3s infinite alternate;
+    }
+
+    .side-gifs {
+      display: flex;
+      justify-content: space-between;
+      width: 70%;
+      margin-top: 3rem;
+    }
+
+    .side-gifs img {
+      width: 170px;
+      height: auto;
+      animation: move-gif 3s infinite alternate;
+      border-radius: 50%;
+    }
+
+    iframe {
+      margin-top: 2rem;
+      border: none;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    }
+
+    /* Animación uniforme */
+    @keyframes move-gif {
+      0% {
+        transform: translateX(0);
+      }
+      50% {
+        transform: translateX(10px);
+      }
+      100% {
+        transform: translateX(-10px);
+      }
+    }
+  </style>
+</head>
+<body>
+  <h1>Loading hallacas...</h1>
+  <h2>Selebremos el nasimiento de el niño Jesús</h2>
+  <div id="countdown">00:00:00:00</div>
+
+  <!-- Video de YouTube -->
+  <iframe 
+    width="560" 
+    height="315" 
+    src="https://www.youtube.com/embed/GejS2IrCoLc?start=16&autoplay=1&loop=1&playlist=GejS2IrCoLc" 
+    title="Video de YouTube" 
+    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+    allowfullscreen>
+  </iframe>
+
+  <!-- GIF arriba a la izquierda -->
+  <div class="gif-container">
+    <img src="https://media.giphy.com/media/F1P5wA3Ai0jFAAWQFA/giphy.gif?cid=790b7611a9321qfpqfl6m11vqhbamotn12u10jjfieekl8ds&ep=v1_gifs_search&rid=giphy.gif&ct=g" alt="GIF Izquierdo">
+  </div>
+
+  <!-- GIF arriba a la derecha -->
+  <div class="gif-container-right">
+    <img src="https://media.giphy.com/media/Sg86rhq4G3vqM/giphy.gif?cid=ecf05e47ej181sfhgpgx44e842trkt9cgn6adsi6ctwc157r&ep=v1_gifs_search&rid=giphy.gif&ct=g" alt="GIF Derecho">
+  </div>
+
+  <!-- GIFs al lado del video -->
+  <div class="side-gifs">
+    <img src="https://media.giphy.com/media/9uXPLZpTgSHcY/giphy.gif?cid=790b761173eo7a9ttpz2zcc2h49820m5qoyppd8cmbkbfzyd&ep=v1_gifs_search&rid=giphy.gif&ct=g" alt="GIF Inferior Izquierdo">
+    <img src="https://media.giphy.com/media/14kqI3Y4urS3rG/giphy.gif?cid=790b761173eo7a9ttpz2zcc2h49820m5qoyppd8cmbkbfzyd&ep=v1_gifs_search&rid=giphy.gif&ct=g" alt="GIF Inferior Derecho">
+  </div>
+
+  <script>
+    // Configurar fecha de Navidad
+    const targetDate = new Date('December 25, 2024 00:00:00').getTime();
+
+    // Actualizar el contador
+    function updateCountdown() {
+      const now = new Date().getTime();
+      const timeLeft = targetDate - now;
+
+      const days = Math.floor(timeLeft / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
+
+      document.getElementById('countdown').textContent = 
+        `${days}d : ${hours}h : ${minutes}m : ${seconds}s`;
+
+      // Mostrar "¡Feliz Navidad!" si llega la fecha
+      if (timeLeft < 0) {
+        clearInterval(interval);
+        document.getElementById('countdown').textContent = '¡Feliz Navidad!';
+      }
+    }
+
+    // Actualizar cada segundo
+    const interval = setInterval(updateCountdown, 1000);
+    updateCountdown();
+  </script>
+</body>
+</html>
